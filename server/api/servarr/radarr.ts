@@ -170,7 +170,7 @@ class RadarrAPI extends ServarrBase<{ movieId: number }> {
           });
 
           if (options.searchNow) {
-            this.searchMovie(response.data.id);
+            await this.searchMovie(response.data.id);
           }
 
           return response.data;
@@ -188,6 +188,11 @@ class RadarrAPI extends ServarrBase<{ movieId: number }> {
           'Movie is already monitored in Radarr. Skipping add and returning success',
           { label: 'Radarr' }
         );
+
+        if (options.searchNow && !movie.hasFile) {
+          await this.searchMovie(movie.id);
+        }
+
         return movie;
       }
 
@@ -213,6 +218,10 @@ class RadarrAPI extends ServarrBase<{ movieId: number }> {
           label: 'Radarr',
           movie: response.data,
         });
+
+        if (options.searchNow && !response.data.hasFile) {
+          await this.searchMovie(response.data.id);
+        }
       } else {
         logger.error('Failed to add movie to Radarr', {
           label: 'Radarr',

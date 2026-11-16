@@ -372,6 +372,7 @@ const SETTINGS_PATH = process.env.CONFIG_DIRECTORY
 
 class Settings {
   private data: AllSettings;
+  private saveChain: Promise<void> = Promise.resolve();
 
   constructor(initialSettings?: AllSettings) {
     this.data = {
@@ -818,7 +819,13 @@ class Settings {
     return this;
   }
 
-  public async save(): Promise<void> {
+  public save(): Promise<void> {
+    const run = this.saveChain.then(() => this.persistToDisk());
+    this.saveChain = run.catch(() => undefined);
+    return run;
+  }
+
+  private async persistToDisk(): Promise<void> {
     const tmp = SETTINGS_PATH + '.tmp';
     await fs.writeFile(tmp, JSON.stringify(this.data, undefined, ' '));
     await fs.rename(tmp, SETTINGS_PATH);
