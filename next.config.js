@@ -2,6 +2,7 @@
  * @type {import('next').NextConfig}
  */
 module.exports = {
+  basePath: '/request',
   env: {
     commitTag: process.env.COMMIT_TAG || 'local',
   },
