@@ -1,0 +1,115 @@
+/**
+ * Rasidence visual tokens applied to Seerr's native interface.
+ *
+ * Keep this as a small theme overlay so upstream Seerr layouts and components
+ * remain intact and easy to update.
+ */
+
+html.dark {
+  --sidebar-width: 256px;
+  --header-height: 70px;
+  --background: #09090b;
+  --foreground: #fafafa;
+  --card: #09090b;
+  --card-foreground: #fafafa;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --secondary: #27272a;
+  --secondary-foreground: #fafafa;
+  --muted: #18181b;
+  --muted-foreground: #71717a;
+  --accent: #18181b;
+  --accent-foreground: #fafafa;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #52525b;
+  --radius: 0.5rem;
+}
+
+html.dark body {
+  font-family:
+    'Inter',
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+  font-feature-settings:
+    'rlig' 1,
+    'calt' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.dark ::selection {
+  background-color: rgb(37 99 235 / 0.35);
+  color: var(--foreground);
+}
+
+/* Native Seerr shell, painted with Rasidence tokens. */
+html.dark .seerr-app-shell {
+  background-color: var(--background);
+}
+
+html.dark .seerr-sidebar-desktop {
+  width: var(--sidebar-width);
+  background-color: var(--background);
+  border-right: 1px solid var(--border);
+}
+
+html.dark .seerr-sidebar-mobile-panel {
+  background-color: var(--background);
+  border-right: 1px solid var(--border);
+}
+
+html.dark .seerr-sidebar-brand {
+  min-height: var(--header-height);
+  display: flex;
+  align-items: center;
+  padding-inline: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+html.dark .seerr-sidebar-menu {
+  padding: 1.25rem;
+}
+
+html.dark .seerr-sidebar-nav-link {
+  border-radius: var(--radius);
+  color: var(--accent-foreground);
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+html.dark .seerr-sidebar-nav-link:hover {
+  background-color: var(--accent);
+  color: var(--foreground);
+}
+
+html.dark .seerr-sidebar-nav-link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+html.dark .seerr-sidebar-nav-link[aria-current='page'] {
+  background-color: var(--muted);
+  color: var(--primary);
+}
+
+html.dark .seerr-sidebar-nav-link svg {
+  flex-shrink: 0;
+  opacity: 0.65;
+  color: currentColor;
+}
+
+html.dark .seerr-sidebar-nav-link:hover svg,
+html.dark .seerr-sidebar-nav-link[aria-current='page'] svg {
+  opacity: 1;
+}

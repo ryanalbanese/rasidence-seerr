@@ -214,7 +214,7 @@ const CollectionDetails = ({ collection }: CollectionDetailsProps) => {
             className="absolute inset-0"
             style={{
               backgroundImage:
-                'linear-gradient(180deg, rgba(17, 24, 39, 0.47) 0%, rgba(17, 24, 39, 1) 100%)',
+                'linear-gradient(180deg, rgba(9, 9, 11, 0.47) 0%, rgba(9, 9, 11, 1) 100%)',
             }}
           />
         </div>

@@ -163,7 +163,7 @@ const Login = () => {
         <LanguagePicker />
       </div>
       <div className="relative z-40 mt-10 flex flex-col items-center px-4 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="relative h-48 w-full max-w-full">
+        <div className="relative h-28 w-full max-w-full">
           <Image src="/logo_stacked.svg" alt="Logo" fill />
         </div>
       </div>

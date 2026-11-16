@@ -12,7 +12,7 @@ class MyDocument extends Document {
 
   render(): JSX.Element {
     return (
-      <Html>
+      <Html lang="en" className="dark">
         <Head>
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link

@@ -223,6 +223,13 @@ const CoreApp: Omit<NextAppComponentType, 'origGetInitialProps'> = ({
   );
 };
 
+function redirectLocation(router: AppProps['router'], path: string): string {
+  const base = router.basePath ?? '';
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  if (!base) return normalized;
+  return `${base}${normalized}`.replace(/\/+/g, '/');
+}
+
 CoreApp.getInitialProps = async (initialProps) => {
   const { ctx, router } = initialProps;
   let user: User | undefined = undefined;
@@ -266,7 +273,7 @@ CoreApp.getInitialProps = async (initialProps) => {
     if (!initialized) {
       if (!router.pathname.match(/(setup|login\/plex)/)) {
         ctx.res.writeHead(307, {
-          Location: '/setup',
+          Location: redirectLocation(router, '/setup'),
         });
         ctx.res.end();
       }
@@ -288,17 +295,17 @@ CoreApp.getInitialProps = async (initialProps) => {
 
         if (router.pathname.match(/(setup|login)/)) {
           ctx.res.writeHead(307, {
-            Location: '/',
+            Location: redirectLocation(router, '/'),
           });
           ctx.res.end();
         }
       } catch (e) {
-        // If there is no user, and ctx.res is set (to check if we are on the server side)
-        // _AND_ we are not already on the login or setup route, redirect to /login with a 307
-        // before anything actually renders
-        if (!router.pathname.match(/(login|setup|resetpassword)/)) {
+        // Rasidence owns Plex sign-in. Send unauthenticated request traffic to
+        // the parent app, which establishes both the Rasidence and Seerr
+        // sessions before returning here.
+        if (!router.pathname.match(/(setup|resetpassword)/)) {
           ctx.res.writeHead(307, {
-            Location: '/login',
+            Location: '/auth/classic/signin?next=/request',
           });
           ctx.res.end();
         }

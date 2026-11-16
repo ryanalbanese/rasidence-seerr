@@ -450,7 +450,7 @@ const MovieDetails = ({ movie }: MovieDetailsProps) => {
             className="absolute inset-0"
             style={{
               backgroundImage:
-                'linear-gradient(180deg, rgba(17, 24, 39, 0.47) 0%, rgba(17, 24, 39, 1) 100%)',
+                'linear-gradient(180deg, rgba(9, 9, 11, 0.47) 0%, rgba(9, 9, 11, 1) 100%)',
             }}
           />
         </div>
@@ -749,7 +749,7 @@ const MovieDetails = ({ movie }: MovieDetailsProps) => {
                       className="absolute inset-0"
                       style={{
                         backgroundImage:
-                          'linear-gradient(180deg, rgba(31, 41, 55, 0.47) 0%, rgba(31, 41, 55, 0.80) 100%)',
+                          'linear-gradient(180deg, rgba(39, 39, 42, 0.47) 0%, rgba(39, 39, 42, 0.80) 100%)',
                       }}
                     />
                   </div>
